@@ -8,9 +8,11 @@ module.exports  = {
                     include : [db.Category, db.Image]
                 }]});
             if(!cart){
-                cart = await db.Cart.create({UserId: req.requestedUser.id, expirationDate: new Date()})
+                cart = await db.Cart.create({UserId: req.requestedUser.id, expirationDate: new Date()});
+                // Nouveau panier vide : recharger pour avoir Products = []
+                cart = await db.Cart.findByPk(cart.id, {include: [{model: db.Product, include: [db.Category, db.Image]}]});
             }
-            cart.dataValues.total = cart.Products.reduce((total, product) => total + product.price, 0);
+            cart.dataValues.total = (cart.Products || []).reduce((total, product) => total + product.price, 0);
             res.status(200).json(cart);
         } catch (error) {
             res.status(500).json(error);
@@ -35,8 +37,13 @@ module.exports  = {
             const cart = await db.Cart.findByPk(req.params.cart_id);
 
             if (cart && product) {
-                await cart.addProduct(product)
-                res.status(200).json(cart);
+                await cart.addProduct(product);
+                // Recharger le panier avec ses produits pour renvoyer une réponse complète
+                const updatedCart = await db.Cart.findByPk(cart.id, {
+                    include: [{model: db.Product, include: [db.Category, db.Image]}]
+                });
+                updatedCart.dataValues.total = (updatedCart.Products || []).reduce((total, p) => total + p.price, 0);
+                res.status(200).json(updatedCart);
             } else {
                 res.status(404).send('Cart not found');
             }
@@ -50,9 +57,13 @@ module.exports  = {
             const cart = await db.Cart.findByPk(req.params.cart_id);
 
             if (cart && product) {
-                console.log("remove")
-                await cart.removeProduct(product)
-                res.status(200).json(cart);
+                await cart.removeProduct(product);
+                // Recharger le panier avec ses produits pour renvoyer une réponse complète
+                const updatedCart = await db.Cart.findByPk(cart.id, {
+                    include: [{model: db.Product, include: [db.Category, db.Image]}]
+                });
+                updatedCart.dataValues.total = (updatedCart.Products || []).reduce((total, p) => total + p.price, 0);
+                res.status(200).json(updatedCart);
             } else {
                 res.status(404).send('Cart not found');
             }

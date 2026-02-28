@@ -41,11 +41,10 @@ async function initDatabase() {
 
         // Create categories
         const categories = [
-            { name: 'Electronics' },
-            { name: 'Clothing' },
-            { name: 'Books' },
-            { name: 'Home & Garden' },
-            { name: 'Sports & Outdoors' }
+            { name: 'Afrique' },
+            { name: 'Amérique du Sud' },
+            { name: 'Amérique Centrale' },
+            { name: 'Asie' },
         ];
 
         const createdCategories = [];
@@ -60,109 +59,88 @@ async function initDatabase() {
             createdCategories.push(category);
         }
 
-        // Create products
+        // Afrique=0, Amérique du Sud=1, Amérique Centrale=2, Asie=3
         const products = [
             {
-                name: 'Laptop Pro 15"',
-                description: 'High-performance laptop with 16GB RAM and 512GB SSD. Perfect for professionals and developers.',
-                price: 1299.99,
-                stock: 50,
-                CategoryId: createdCategories[0].id, // Electronics
+                name: 'Éthiopie Yirgacheffe',
+                description: 'Le berceau du café. Cultivé dans la légendaire région de Yirgacheffe, ce café naturel exprime toute la complexité aromatique de l\'Éthiopie. Notes florales de jasmin, agrumes de bergamote et finale sucrée de fruits rouges. Un voyage sensoriel unique.',
+                price: 14.50,
+                stock: 32,
+                CategoryId: createdCategories[0].id, // Afrique
                 images: [
-                    { link: 'https://example.com/images/laptop-1.jpg' },
-                    { link: 'https://example.com/images/laptop-2.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800' }
                 ]
             },
             {
-                name: 'Wireless Headphones',
-                description: 'Premium noise-cancelling wireless headphones with 30-hour battery life.',
-                price: 299.99,
-                stock: 100,
-                CategoryId: createdCategories[0].id, // Electronics
+                name: 'Kenya AA Nyeri',
+                description: 'L\'acidité vibrante du Kenya. Grade AA (les plus gros grains), ce café de Nyeri explose en bouche avec des notes de cassis, pamplemousse rose et tomate confite. Une torréfaction claire préserve son caractère fruité exceptionnel.',
+                price: 15.20,
+                stock: 18,
+                CategoryId: createdCategories[0].id, // Afrique
                 images: [
-                    { link: 'https://example.com/images/headphones-1.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800' }
                 ]
             },
             {
-                name: 'Smartphone X',
-                description: 'Latest smartphone with advanced camera system and 5G connectivity.',
-                price: 899.99,
-                stock: 75,
-                CategoryId: createdCategories[0].id, // Electronics
+                name: 'Brésil Cerrado',
+                description: 'Le géant brésilien dans toute sa générosité. Ce café du Cerrado Mineiro offre un profil gourmand : noisette grillée, chocolat au lait et notes de pain d\'épices. Corps moyen, parfait pour l\'espresso du matin.',
+                price: 10.90,
+                stock: 67,
+                CategoryId: createdCategories[1].id, // Amérique du Sud
                 images: [
-                    { link: 'https://example.com/images/phone-1.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1501481663691-6e8c7eacc43d?w=800' }
                 ]
             },
             {
-                name: 'Cotton T-Shirt',
-                description: 'Comfortable 100% cotton t-shirt, available in multiple colors.',
-                price: 24.99,
-                stock: 200,
-                CategoryId: createdCategories[1].id, // Clothing
+                name: 'Colombie Huila',
+                description: 'La douceur colombienne dans toute sa splendeur. Ce café de la région de Huila offre un profil équilibré et accessible. Notes de pomme verte, sucre roux et amande douce. Une torréfaction medium révèle toute sa rondeur.',
+                price: 11.90,
+                stock: 52,
+                CategoryId: createdCategories[1].id, // Amérique du Sud
                 images: [
-                    { link: 'https://example.com/images/tshirt-1.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800' }
                 ]
             },
             {
-                name: 'Denim Jeans',
-                description: 'Classic fit denim jeans, durable and stylish.',
-                price: 79.99,
-                stock: 150,
-                CategoryId: createdCategories[1].id, // Clothing
+                name: 'Honduras Santa Bárbara',
+                description: 'Découvrez ce café du massif de Santa Bárbara, l\'un des meilleurs d\'Amérique centrale. Cultivé en altitude par de petits producteurs, il révèle des notes de pêche blanche, caramel beurré et cacao. Une douceur fruitée remarquable.',
+                price: 12.40,
+                stock: 34,
+                CategoryId: createdCategories[2].id, // Amérique Centrale
                 images: [
-                    { link: 'https://example.com/images/jeans-1.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800' }
                 ]
             },
             {
-                name: 'JavaScript: The Definitive Guide',
-                description: 'Comprehensive guide to JavaScript programming for beginners and experts.',
-                price: 49.99,
-                stock: 80,
-                CategoryId: createdCategories[2].id, // Books
+                name: 'Mexique Chiapas',
+                description: 'Un café solaire de l\'état de Chiapas, au cœur des forêts tropicales mexicaines. Cultivé à l\'ombre des arbres fruitiers par des communautés indigènes, il dévoile des notes douces de mandarine, miel sauvage et chocolat blanc.',
+                price: 11.50,
+                stock: 44,
+                CategoryId: createdCategories[2].id, // Amérique Centrale
                 images: [
-                    { link: 'https://example.com/images/book-js.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800' }
                 ]
             },
             {
-                name: 'The Complete Node.js Guide',
-                description: 'Learn Node.js from scratch with practical examples and projects.',
-                price: 39.99,
-                stock: 60,
-                CategoryId: createdCategories[2].id, // Books
+                name: 'Indonésie Sumatra Mandheling',
+                description: 'Un café corsé et terreux de l\'île de Sumatra. Traité selon la méthode traditionnelle Giling Basah (semi-humide), il développe un corps sirupeux exceptionnel avec des notes de cèdre, chocolat amer et épices. Idéal pour les amateurs de cafés puissants.',
+                price: 13.80,
+                stock: 28,
+                CategoryId: createdCategories[3].id, // Asie
                 images: [
-                    { link: 'https://example.com/images/book-node.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800' }
                 ]
             },
             {
-                name: 'Coffee Maker Deluxe',
-                description: 'Programmable coffee maker with 12-cup capacity and automatic shut-off.',
-                price: 89.99,
-                stock: 40,
-                CategoryId: createdCategories[3].id, // Home & Garden
+                name: 'Indonésie Sulawesi Toraja',
+                description: 'L\'autre trésor indonésien. Venant des hauts plateaux de Toraja à Sulawesi, ce café offre un profil très différent de Sumatra : plus doux, avec un corps velouté et des notes de tabac blond, vanille et réglisse. Un café de méditation.',
+                price: 14.20,
+                stock: 22,
+                CategoryId: createdCategories[3].id, // Asie
                 images: [
-                    { link: 'https://example.com/images/coffeemaker-1.jpg' }
+                    { link: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800' }
                 ]
             },
-            {
-                name: 'Yoga Mat',
-                description: 'Non-slip yoga mat with carrying strap, perfect for home workouts.',
-                price: 34.99,
-                stock: 90,
-                CategoryId: createdCategories[4].id, // Sports & Outdoors
-                images: [
-                    { link: 'https://example.com/images/yogamat-1.jpg' }
-                ]
-            },
-            {
-                name: 'Running Shoes',
-                description: 'Lightweight running shoes with cushioned sole for maximum comfort.',
-                price: 119.99,
-                stock: 70,
-                CategoryId: createdCategories[4].id, // Sports & Outdoors
-                images: [
-                    { link: 'https://example.com/images/runningshoes-1.jpg' }
-                ]
-            }
         ];
 
         for (const productData of products) {

@@ -109,6 +109,14 @@ module.exports  = {
             const newUser = await db.User.create(user);
             res.status(201).json(newUser);
         } catch (error) {
+            // Email déjà utilisé → 409 Conflict
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                return res.status(409).json({ error: 'Email déjà utilisé' });
+            }
+            // Email invalide (format) → 422
+            if (error.name === 'SequelizeValidationError') {
+                return res.status(422).json(error);
+            }
             res.status(500).send(error);
         }
     },

@@ -88,7 +88,7 @@ async function initDatabase() {
                 stock: 67,
                 CategoryId: createdCategories[1].id, // Amérique du Sud
                 images: [
-                    { link: 'https://images.unsplash.com/photo-1501481663691-6e8c7eacc43d?w=800' }
+                    { link: 'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=800' }
                 ]
             },
             {
